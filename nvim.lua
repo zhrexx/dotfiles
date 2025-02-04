@@ -1,4 +1,3 @@
--- Packer: git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 -- Packer | Plugins
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -11,7 +10,7 @@ require('packer').startup(function(use)
   use 'kyazdani42/nvim-tree.lua'
   use 'projekt0n/github-nvim-theme'
   use 'karb94/neoscroll.nvim'
-  use 'L3MON4D3/LuaSnip'
+  use({ "L3MON4D3/LuaSnip", run = "make install_jsregexp"})
   use 'rafamadriz/friendly-snippets'
 
   -- themes
@@ -130,8 +129,9 @@ vim.api.nvim_set_keymap('s', '<C-e>s', ':NvimTreeToggle<CR>', { noremap = true, 
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.keymap.set("i", "<C-l>", function() ls.expand_or_jump() end, {silent = true})
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
 
 -- Other
 vim.g.mapleader = 'C-'
-
 
